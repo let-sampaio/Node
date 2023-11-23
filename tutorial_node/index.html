@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href='./nav-bar/styles.css'>
+</head>
+<body>
+    <main>
+        <form id="meuFormulario">
+            <h3>teste</h3>
+            <div class="teste">
+                <input type="text" name="name"/>
+            </div>
+            <button type="submit" class="block">enviar</button>
+        </form>
+
+        <button onclick="mostrarInfo()">Dados</button>
+        <ul id="infoList"></ul>
+
+        <script>
+            document.getElementById('meuFormulario').addEventListener('submit', function(event) {
+                event.preventDefault(); 
+
+                fetch('/dados', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: document.getElementsByName('name')[0].value,
+                    }),
+                })
+                .then(response => response.json())
+                .then(info => {
+                    console.log(info); 
+                })
+                .catch(error => console.error(error.message));
+            });
+
+            function mostrarInfo() {
+                
+                fetch('/dados')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erro ao obter informações.');
+                        }
+                        return response.json();
+                    })
+                    .then(info => {
+                       
+                        document.getElementById('infoList').innerHTML = '';
+
+                        info.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = item.name;
+                            document.getElementById('infoList').appendChild(li);
+                        });
+                    })
+                    .catch(error => console.error(error.message));
+            }
+        </script>
+    </main>
+</body>
+</html>
