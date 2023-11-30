@@ -5,23 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href='./nav-bar/styles.css'>
+    <link rel="stylesheet" type='text/css' href="./styles.css">
 </head>
 <body>
     <main>
-        <form id="meuFormulario">
-            <h3>teste</h3>
-            <div class="teste">
-                <input type="text" name="name"/>
+        <div class="litform">
+            <form id="form">
+            <div class="imagem--lit"><img src="./images/lit--logo.png" alt="lit--logo" width="115px" height="110px"></div>
+            <div class="username">
+            <img class="email--icone" src="./images/email--logo.png" alt="email--icone" >
+            <label for="usuario">Email</label> 
+                <input type="text" id="email" name="email"/>
             </div>
-            <button type="submit" class="block">enviar</button>
+            <div class="password">
+                <img class="cadeado--icone" src="./images/cadeado--icone.png" alt="cadeado--icone">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" minlength="8" required>
+            </div>
+            <div class="footer">
+                <a href="http://localhost:8000/">Esqueceu a senha?</a>
+                <button type="submit" class="block">Login</button>
+                <!--<ul id="infoList"></ul>-->
+            </div>
+            
         </form>
-
-        <button onclick="mostrarInfo()">Dados</button>
-        <ul id="infoList"></ul>
-
         <script>
-            document.getElementById('meuFormulario').addEventListener('submit', function(event) {
+            document.getElementById('form').addEventListener('submit', function(event) {
                 event.preventDefault(); 
 
                 fetch('/dados', {
@@ -30,7 +39,8 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        name: document.getElementsByName('name')[0].value,
+                        email: document.getElementsByName('email')[0].value,
+                        senha: document.getElementsByName('senha')[0].value,
                     }),
                 })
                 .then(response => response.json())
@@ -39,29 +49,8 @@
                 })
                 .catch(error => console.error(error.message));
             });
-
-            function mostrarInfo() {
-                
-                fetch('/dados')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erro ao obter informações.');
-                        }
-                        return response.json();
-                    })
-                    .then(info => {
-                       
-                        document.getElementById('infoList').innerHTML = '';
-
-                        info.forEach(item => {
-                            const li = document.createElement('li');
-                            li.textContent = item.name;
-                            document.getElementById('infoList').appendChild(li);
-                        });
-                    })
-                    .catch(error => console.error(error.message));
-            }
-        </script>
+        </script></div>
+       
     </main>
 </body>
 </html>

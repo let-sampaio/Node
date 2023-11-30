@@ -8,11 +8,9 @@ const port = 8000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(express.static(path.join(__dirname, '')));
 const info = [
-    { name: 'leticia' },
-    { name: 'marcos' },
-    { name: 'leane' },
-    { name: 'juan' },
+ 
 ];
 
 app.get('', (req, res) => {
@@ -24,14 +22,15 @@ app.get('/dados', (req, res) => {
 });
 
 app.post('/dados',(req, res) => {
-    const newName = req.body.name;
+    const newLogin = req.body.email;
+    const newPassword = req.body.senha;
 
-    if (newName) {
-        info.push({ name: newName });
+    if (newLogin && newPassword) {
+        info.push({ email: newLogin, senha: newPassword});
         res.send(info);
         console.log(info);
     } else {
-        res.status(404).send('Nome inválido. Por favor, forneça um nome válido.');
+        res.status(404).send('Email inválido. Por favor, forneça um email válido.');
     }
 });
 
