@@ -4,53 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LIT</title>
     <link rel="stylesheet" type='text/css' href="./styles.css">
+    <script src="https://kit.fontawesome.com/cf6fa412bd.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <main>
         <div class="litform">
             <form id="form">
-            <div class="imagem--lit"><img src="./images/lit--logo.png" alt="lit--logo" width="115px" height="110px"></div>
-            <div class="username">
-            <img class="email--icone" src="./images/email--logo.png" alt="email--icone" >
-            <label for="usuario">Email</label> 
-                <input type="text" id="email" name="email"/>
-            </div>
-            <div class="password">
-                <img class="cadeado--icone" src="./images/cadeado--icone.png" alt="cadeado--icone">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" minlength="8" required>
-            </div>
+            <div class="imagem--lit"><img src="./images/lit--logo.png" alt="lit--logo" width="120px" height="109px"></div>
+            <i class=" fas  fa-envelope iEmail"></i> 
+            <input type="text" placeholder="Email" required/>
+            <i class=" fas  fa-lock iPassword"></i>
+            <input type="password" placeholder="Senha" minlength="8" required>
+
             <div class="footer">
                 <a href="http://localhost:8000/">Esqueceu a senha?</a>
                 <button type="submit" class="block">Login</button>
-                <!--<ul id="infoList"></ul>-->
             </div>
             
         </form>
-        <script>
-            document.getElementById('form').addEventListener('submit', function(event) {
-                event.preventDefault(); 
+    </div>
+    <script>
+        document.getElementById('form').addEventListener('submit', function(event) {
+    event.preventDefault(); 
 
-                fetch('/dados', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: document.getElementsByName('email')[0].value,
-                        senha: document.getElementsByName('senha')[0].value,
-                    }),
-                })
-                .then(response => response.json())
-                .then(info => {
-                    console.log(info); 
-                })
-                .catch(error => console.error(error.message));
-            });
-        </script></div>
-       
-    </main>
+    fetch('/dados', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: document.getElementsByName('email')[0].value,
+            senha: document.getElementsByName('senha')[0].value,
+        }),
+    })
+    .then(response => response.json())
+    .then(info => {
+        console.log(info); 
+    })
+    .catch(error => console.error(error.message));
+});
+    </script>
 </body>
 </html>
