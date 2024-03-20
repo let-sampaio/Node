@@ -11,8 +11,7 @@ body{
    justify-content: center;
     
 }
-
-.litform{
+.infor{
     background-color: white;
     padding: 6px;
     width: 370px;
@@ -20,24 +19,17 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     position: relative;
     border-radius: 63px;
-
 }
-#form .imagem--lit{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-   
-}
-#form{
+#cadastro{
     position: relative;
     margin-top: 80px;
     width: 300px;
     height: 400px;
-}
 
+}
 input[type="text"], input[type="password"]{
     border: none;
     border-bottom: black solid 2px;
@@ -45,43 +37,25 @@ input[type="text"], input[type="password"]{
     padding: 8px, 0 8px 35px;
     outline: none;
     width: 100%;
+   
+   
 }
+
 i{
     position:absolute;
     right: 10px;
     padding: 10px 10px;
 }
-
-.footer{
-    display: flex;
-    flex-direction: column;
- 
-}
-a{
-   top:10px ;
-   color: black;
-   text-decoration: none;
-    text-align: right;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 21px;
-}
-.submit{
+.btnFinish{
     cursor: pointer;
-    margin: 10px 0;
-    width: 100%;
-    height: 35px;
     background: linear-gradient(89.92deg, #92FF88 1.51%, #92FF88 37.83%, rgba(146, 255, 136, 0.7) 74.14%, #ECFFF4 98.35%);
+    color: black;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight:bold;
+    margin: 30px 0;
     border: none;
-    border-radius: 11px;
-  
-}
-#subscribe{
-    cursor: pointer;
-    text-align: center;
-    font-size: 13px;
-    font-weight: bold;
+    border-radius: 15px;
+    width: 70px;
+    height: 30px;
+    
 }

@@ -20,7 +20,9 @@ app.get('', (req, res) => {
 app.get('/dados', (req, res) => {
     res.send(info);
 });
-
+app.get('/cadastro',(req,res)=>{
+    res.sendFile(path.resolve(__dirname,'./cadastro.html'));
+});
 app.post('/dados',(req, res) => {
     const newLogin = req.body.email;
     const newPassword = req.body.senha;
